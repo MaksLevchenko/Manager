@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'lending' %}" class="nav-link">Подать заявку.</a>
+            </li>
+        </ul>
+        {% if user.is_authenticated %}
+            <span class="navbar-text mr-2">{{ user }}</span>
+            <a href="{% url 'home' %}" class="btn btn-outline-light">Домой</a>
+            <a href="{% url 'signout' %}" class="btn btn-outline-light">Выход</a>
+        {% else %}
+            <a href="{% url 'signin' %}" class="btn btn-outline-light mr-2">Вход</a>
+        {% endif %}
+    </div>
+</nav>
