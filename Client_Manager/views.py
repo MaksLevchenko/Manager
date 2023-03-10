@@ -65,10 +65,10 @@ class ClientListView(generic.ListView):
 
     def get_queryset(self):
         if self.request.user.username == 'manager1':
-            queryset = Client.objects.all().order_by('id')[::2]
+            queryset = Client.objects.all().order_by('id')[1::2]
             return queryset
         else:
-            queryset = Client.objects.all().order_by('id')[1::2]
+            queryset = Client.objects.all().order_by('id')[::2]
             return queryset
 
 
