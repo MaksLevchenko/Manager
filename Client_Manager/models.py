@@ -4,6 +4,7 @@ from django.urls import reverse
 
 
 class Client(models.Model):
+    """Модель клиента"""
     name = models.CharField(max_length=30, verbose_name='Имя')
     lastName = models.CharField(max_length=30, verbose_name='Фамилия')
     phone = models.PositiveSmallIntegerField(verbose_name='Телефон')
@@ -22,6 +23,7 @@ class Client(models.Model):
 
 
 class Comment(models.Model):
+    """Модель комментария"""
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='comments')
     username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_name')
     text = models.TextField()

@@ -8,10 +8,11 @@ from Client_Manager.models import Client, Comment
 
 
 class SignInView(View):
+    """Авторизация"""
     def get(self, request, *args, **kwargs):
         form = SignInForm()
         return render(request, 'signin.html', context={
-                      'form': form})
+            'form': form})
 
     def post(self, request, *args, **kwargs):
         form = SignInForm(request.POST)
@@ -28,14 +29,15 @@ class SignInView(View):
 
 
 class LandingView(View):
+    """Заявка"""
     def get(self, request, *args, **kwargs):
         form = LandingForm()
         return render(request, 'lending.html', context={
-                      'form': form,
-                      'title': 'Написать мне'
+            'form': form,
+            'title': 'Написать мне'
         })
 
-    def post(self,request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         form = LandingForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
@@ -48,11 +50,12 @@ class LandingView(View):
                 return HttpResponse('Невалидный заголовок')
             return HttpResponseRedirect('success')
         return render(request, 'lending.html', context={
-                'form': form,
-            })
+            'form': form,
+        })
 
 
 class SuccessView(View):
+    """Благодарность"""
     def get(self, request, *args, **kwargs):
         return render(request, 'success.html', context={
             'title': 'Спасибо'
@@ -60,6 +63,7 @@ class SuccessView(View):
 
 
 class ClientListView(generic.ListView):
+    """Список клиентов"""
     model = Client
     template_name = 'home.html'
 
@@ -73,6 +77,7 @@ class ClientListView(generic.ListView):
 
 
 class ClientDetailView(generic.DetailView):
+    """Страница клиента"""
     comment_form = CommentForm()
     model = Client
     slug_field = 'id'

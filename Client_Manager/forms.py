@@ -1,9 +1,10 @@
 from django import forms
 
-from Client_Manager.models import Client, Comment
+from Client_Manager.models import Comment
 
 
 class SignInForm(forms.Form):
+    """Форма авторизации"""
     username = forms.CharField(
         max_length=100,
         required=True,
@@ -24,7 +25,7 @@ class SignInForm(forms.Form):
 
 
 class CommentForm(forms.ModelForm):
-
+    """Форма комментария"""
     class Meta:
         model = Comment
         fields = ('text',)
@@ -37,6 +38,7 @@ class CommentForm(forms.ModelForm):
 
 
 class LandingForm(forms.Form):
+    """Форма заявки"""
     name = forms.CharField(
         required=True,
         max_length=30,
@@ -72,4 +74,3 @@ class LandingForm(forms.Form):
             'placeholder': "Введите email:"
         })
     )
-
